@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisição e Resposta</title>
+</head>
+<body>
+    <h1>Requisição e Resposta</h1>
+    <button type="button" id="btnFetch">Fetch</button>
+    <div id="resposta"></div>
+
+    <script>
+        const req = new Request('http://localhost:3002/produtos', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        });
+
+        document.querySelector('#btnFetch').addEventListener('click', () => {
+            fetch(req)
+                .then(res => res.json())
+            //    .then(res => JSON.stringify(res))
+                .then(res => {
+                    document.querySelector('#resposta').innerHTML = res.preco;
+                });
+
+        })
+    </script>
+</body>
+</html>
